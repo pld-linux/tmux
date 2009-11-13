@@ -9,6 +9,7 @@ Source0:	http://dl.sourceforge.net/tmux/%{name}-%{version}.tar.gz
 # Source0-md5:	faf2fc52ac3ae63d899f6fece2c112cd
 Source1:	%{name}-filedetect.vim
 Patch0:		%{name}-makefile.patch
+BuildRequires:	ncurses-devel
 URL:		http://tmux.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
