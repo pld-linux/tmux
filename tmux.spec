@@ -1,8 +1,10 @@
+# TODO:
+# - vim doesn't detect filetype
 Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
 Version:	1.1
-Release:	0.2
+Release:	1
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://dl.sourceforge.net/tmux/%{name}-%{version}.tar.gz
