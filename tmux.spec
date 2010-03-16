@@ -3,14 +3,15 @@
 Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
-Version:	1.1
+Version:	1.2
 Release:	1
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://dl.sourceforge.net/tmux/%{name}-%{version}.tar.gz
-# Source0-md5:	faf2fc52ac3ae63d899f6fece2c112cd
+# Source0-md5:	748fbe7bb5f86812e19bd6005ff21a5a
 Source1:	%{name}-filedetect.vim
 Patch0:		%{name}-makefile.patch
+BuildRequires:	libevent-devel
 BuildRequires:	ncurses-devel
 URL:		http://tmux.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -46,6 +47,7 @@ Vim syntax fájl a tmux konfigurációs fájljához.
 %build
 ./configure
 CFLAGS="%{rpmcflags} -I/usr/include/ncursesw" %{__make} \
+	CC="%{__cc}" \
 	PREFIX=%{_prefix}
 
 %install
