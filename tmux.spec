@@ -1,5 +1,6 @@
 # TODO:
 # - vim doesn't detect filetype
+# - pass LDFLAGS (fix as-needed problem first)
 Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
