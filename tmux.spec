@@ -3,12 +3,12 @@
 Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
-Version:	1.2
+Version:	1.3
 Release:	1
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://dl.sourceforge.net/tmux/%{name}-%{version}.tar.gz
-# Source0-md5:	748fbe7bb5f86812e19bd6005ff21a5a
+# Source0-md5:	96e60cb206de2db0610b9fb6a64c2251
 Source1:	%{name}-filedetect.vim
 Patch0:		%{name}-makefile.patch
 BuildRequires:	libevent-devel
