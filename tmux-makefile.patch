@@ -1,17 +1,6 @@
---- tmux-1.1-orig/GNUmakefile	2009-11-05 13:30:55.000000000 +0100
-+++ tmux-1.1/GNUmakefile	2009-11-13 18:28:18.666815270 +0100
-@@ -53,8 +53,8 @@
- 
- PREFIX?= /usr/local
- INSTALLDIR= install -d
--INSTALLBIN= install -g bin -o root -m 555
--INSTALLMAN= install -g bin -o root -m 444
-+INSTALLBIN= install
-+INSTALLMAN= install
- 
- SRCS= $(shell echo *.c|sed 's|osdep-[a-z0-9]*.c||g')
- include config.mk
-@@ -80,7 +80,7 @@
+--- tmux-1.3-orig/GNUmakefile	2010-07-19 07:54:24.320563707 +0200
++++ tmux-1.3/GNUmakefile	2010-07-19 07:58:25.390541271 +0200
+@@ -81,7 +81,7 @@
  install:	all
  		$(INSTALLDIR) $(DESTDIR)$(PREFIX)/bin
  		$(INSTALLBIN) tmux $(DESTDIR)$(PREFIX)/bin/tmux
