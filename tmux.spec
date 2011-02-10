@@ -5,7 +5,7 @@ Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
 Version:	1.4
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://dl.sourceforge.net/tmux/%{name}-%{version}.tar.gz
@@ -41,6 +41,13 @@ Vim syntax file to tmux config files.
 %description -n vim-syntax-tmux -l hu.UTF-8
 Vim syntax fájl a tmux konfigurációs fájljához.
 
+%package -n bash-completion-tmux
+Summary:	Bash completion for tmux
+Group:		Applications/Shell
+
+%description -n bash-completion-tmux
+This package provides bash-completion for tmux.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -61,6 +68,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/{ftdetect,syntax}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/ftdetect/tmux.vim
 install examples/tmux.vim $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/syntax
+install -d $RPM_BUILD_ROOT%{_datadir}/bash-completion
+install examples/bash_completion_tmux.sh $RPM_BUILD_ROOT%{_datadir}/bash-completion/%{name}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
+ln -s ../../%{_datadir}/bash-completion/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,3 +86,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_datadir}/vim/vimfiles/ftdetect/tmux.vim
 %{_datadir}/vim/vimfiles/syntax/tmux.vim
+
+%files -n bash-completion-tmux
+%defattr(644,root,root,755)
+%{_sysconfdir}/bash_completion.d/%{name}
+%{_datadir}/bash-completion/%{name}
