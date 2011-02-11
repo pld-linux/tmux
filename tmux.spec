@@ -44,6 +44,7 @@ Vim syntax fájl a tmux konfigurációs fájljához.
 %package -n bash-completion-tmux
 Summary:	Bash completion for tmux
 Group:		Applications/Shell
+Requires:	bash-completion
 
 %description -n bash-completion-tmux
 This package provides bash-completion for tmux.
