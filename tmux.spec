@@ -55,7 +55,7 @@ This package provides bash-completion for tmux.
 
 %build
 ./configure
-CFLAGS="%{rpmcflags} -I/usr/include/ncursesw" %{__make} \
+CFLAGS="%{rpmcppflags} %{rpmcflags} -I/usr/include/ncursesw" %{__make} \
 	CC="%{__cc}" \
 	PREFIX=%{_prefix}
 
