@@ -8,13 +8,13 @@ Version:	1.4
 Release:	3
 License:	BSD
 Group:		Applications/Terminal
-Source0:	http://dl.sourceforge.net/tmux/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/tmux/%{name}-%{version}.tar.gz
 # Source0-md5:	0bfc7dd9a5bab192406167589c716a21
 Source1:	%{name}-filedetect.vim
 Patch0:		%{name}-makefile.patch
+URL:		http://tmux.sourceforge.net/
 BuildRequires:	libevent-devel
 BuildRequires:	ncurses-devel
-URL:		http://tmux.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,7 +43,7 @@ Vim syntax fájl a tmux konfigurációs fájljához.
 
 %package -n bash-completion-tmux
 Summary:	Bash completion for tmux
-Group:		Applications/Shell
+Group:		Applications/Shells
 Requires:	bash-completion
 
 %description -n bash-completion-tmux
