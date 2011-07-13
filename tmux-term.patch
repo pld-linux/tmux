@@ -1,0 +1,11 @@
+--- tmux-1.5/configure.ac~	2011-07-09 18:00:17.000000000 +0200
++++ tmux-1.5/configure.ac	2011-07-13 08:24:00.018775830 +0200
+@@ -113,7 +113,7 @@
+ # Look for curses.
+ AC_SEARCH_LIBS(
+ 	setupterm,
+-	[terminfo curses ncurses],
++	[tinfow tinfo terminfo curses ncurses],
+ 	found_curses=yes,
+ 	found_curses=no
+ )

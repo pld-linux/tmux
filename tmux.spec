@@ -5,13 +5,13 @@ Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
 Version:	1.5
-Release:	0.1
+Release:	1
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://downloads.sourceforge.net/tmux/%{name}-%{version}.tar.gz
 # Source0-md5:	3d4b683572af34e83bc8b183a8285263
 Source1:	%{name}-filedetect.vim
-Patch0:		%{name}-makefile.patch
+Patch0:		%{name}-term.patch
 URL:		http://tmux.sourceforge.net/
 BuildRequires:	libevent-devel
 BuildRequires:	ncurses-devel
@@ -51,15 +51,15 @@ This package provides bash-completion for tmux.
 
 %prep
 %setup -q
-# %patch0 -p1
+%patch0 -p1
 
 %build
+%{__aclocal}
+%{__autoconf}
 %configure \
-	CFLAGS="%{rpmcflags} -I/usr/include/ncursesw"
+	CPPFLAGS="-I/usr/include/ncursesw"
 
-CFLAGS="%{rpmcppflags} %{rpmcflags} -I/usr/include/ncursesw" %{__make} \
-	CC="%{__cc}" \
-	PREFIX=%{_prefix}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
