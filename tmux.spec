@@ -5,7 +5,7 @@ Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
 Version:	1.5
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://downloads.sourceforge.net/tmux/%{name}-%{version}.tar.gz
