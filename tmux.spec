@@ -5,7 +5,7 @@ Summary:	tmux is a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Name:		tmux
 Version:	1.8
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://downloads.sourceforge.net/tmux/%{name}-%{version}.tar.gz
@@ -81,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES FAQ NOTES TODO examples/*.conf
+%doc CHANGES FAQ README TODO examples/*.conf
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/tmux*
 
