@@ -1,8 +1,9 @@
 # TODO:
 # - vim doesn't detect filetype
 # - pass LDFLAGS (fix as-needed problem first)
-Summary:	tmux is a terminal multiplexer
+Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
+Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
 Version:	1.9a
 Release:	1
@@ -29,10 +30,18 @@ csatlakozhatsz és irányíthatod egyetlen képernyőről. tmux
 lecsatlakozhat a képernyőről és folytathatja a futását a háttérben, és
 később újracsatlakozhatsz.
 
+%description -l pl.UTF-8
+tmux to multiplekser terminali: pozwala na tworzenie wielu terminali
+(lub okien) z osobnymi programami, dostęp do nich i sterowanie z
+pojedynczego ekranu. tmux może być odłączony od ekranu i nadal działać
+w tle, a następnie ponownie podłączony.
+
 %package -n vim-syntax-tmux
 Summary:	Vim syntax file to tmux config files
 Summary(hu.UTF-8):	Vim syntax fájl a tmux konfigurációs fájljához
+Summary(pl.UTF-8):	Plik składni Vima dla plików konfiguracyjnych tmuksa
 Group:		Applications/Editors/Vim
+Requires:	vim-rt
 
 %description -n vim-syntax-tmux
 Vim syntax file to tmux config files.
@@ -42,11 +51,16 @@ Vim syntax fájl a tmux konfigurációs fájljához.
 
 %package -n bash-completion-tmux
 Summary:	Bash completion for tmux
+Summary(pl.UTF-8):	Bashowe dopełnianie poleceń dla tmuksa
 Group:		Applications/Shells
+Requires:	%{name} = %{version}-%{release}
 Requires:	bash-completion
 
 %description -n bash-completion-tmux
 This package provides bash-completion for tmux.
+
+%description -n bash-completion-tmux -l pl.UTF-8
+Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 
 %prep
 %setup -q
@@ -80,8 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES FAQ README TODO examples/*.conf
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/tmux*
+%attr(755,root,root) %{_bindir}/tmux
+%{_mandir}/man1/tmux.1*
 
 %files -n vim-syntax-tmux
 %defattr(644,root,root,755)
