@@ -6,7 +6,7 @@ Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
 Version:	1.9a
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Terminal
 Source0:	http://downloads.sourceforge.net/tmux/%{name}-%{version}.tar.gz
