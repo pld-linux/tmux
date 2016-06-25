@@ -1,6 +1,5 @@
 # TODO:
 # - vim doesn't detect filetype
-# - pass LDFLAGS (fix as-needed problem first)
 Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
@@ -9,6 +8,7 @@ Version:	2.2
 Release:	1
 License:	BSD
 Group:		Applications/Terminal
+#Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	bd95ee7205e489c62c616bb7af040099
 Source1:	%{name}-filedetect.vim
@@ -20,6 +20,7 @@ URL:		http://tmux.github.io/
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	ncurses-devel
+BuildRequires:	rpmbuild(macros) >= 1.673
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,7 +60,7 @@ Summary:	Bash completion for tmux
 Summary(pl.UTF-8):	Bashowe dopełnianie poleceń dla tmuksa
 Group:		Applications/Shells
 Requires:	%{name} = %{version}-%{release}
-Requires:	bash-completion
+Requires:	bash-completion >= 2.0
 
 %description -n bash-completion-tmux
 This package provides bash-completion for tmux.
@@ -74,7 +75,7 @@ Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 %{__aclocal}
 %{__autoconf}
 %configure \
-	CPPFLAGS="-I/usr/include/ncursesw"
+	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw"
 
 %{__make}
 
@@ -88,10 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/{ftdetect,syntax}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/ftdetect/tmux.vim
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/syntax
-install -d $RPM_BUILD_ROOT%{_datadir}/bash-completion
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/bash-completion/%{name}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
-ln -s ../../%{_datadir}/bash-completion/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
+install -d $RPM_BUILD_ROOT%{bash_compdir}
+install %{SOURCE3} $RPM_BUILD_ROOT%{bash_compdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -109,5 +108,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n bash-completion-tmux
 %defattr(644,root,root,755)
-%{_sysconfdir}/bash_completion.d/%{name}
-%{_datadir}/bash-completion/%{name}
+%{bash_compdir}/%{name}
