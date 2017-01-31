@@ -17,6 +17,8 @@ Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 Source3:	https://raw.githubusercontent.com/przepompownia/tmux-bash-completion/master/completions/tmux
 # Source3-md5:	9040fcb0a16bc85309ac9eefb60c644f
 URL:		http://tmux.github.io/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	ncurses-devel
