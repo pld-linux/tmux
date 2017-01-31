@@ -4,18 +4,18 @@ Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
-Version:	2.2
+Version:	2.3
 Release:	1
 License:	BSD
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	bd95ee7205e489c62c616bb7af040099
+# Source0-md5:	fcfd1611d705d8b31df3c26ebc93bd3e
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
-# Source2-md5:	49b70ec6d65ba3b22e5007a3bbd7d2e4
+# Source2-md5:	fa67c21c238fdcc29f04602e0eda22d1
 Source3:	https://raw.githubusercontent.com/przepompownia/tmux-bash-completion/master/completions/tmux
-# Source3-md5:	5b9e87301e09fab4c30d0d0f83fe6cf5
+# Source3-md5:	9040fcb0a16bc85309ac9eefb60c644f
 URL:		http://tmux.github.io/
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
