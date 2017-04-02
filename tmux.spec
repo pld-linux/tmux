@@ -5,7 +5,7 @@ Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
 Version:	2.3
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
