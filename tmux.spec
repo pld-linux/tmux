@@ -13,7 +13,7 @@ Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{ver
 # Source0-md5:	bcdfcf910c94c3e02ce6b1c035880306
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
-# Source2-md5:	9aac15925ac3b0c25f5e10342a8b08db
+# Source2-md5:	cd1169a1757b515b5c57816d339c6f72
 Source3:	https://raw.githubusercontent.com/przepompownia/tmux-bash-completion/master/completions/tmux
 # Source3-md5:	9040fcb0a16bc85309ac9eefb60c644f
 URL:		http://tmux.github.io/
