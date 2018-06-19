@@ -4,13 +4,13 @@ Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
-Version:	2.6
+Version:	2.7
 Release:	1
 License:	BSD
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	d541ff392249f94c4f3635793556f827
+# Source0-md5:	bcdfcf910c94c3e02ce6b1c035880306
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	9aac15925ac3b0c25f5e10342a8b08db
@@ -74,8 +74,8 @@ Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 %setup -q
 
 %build
-%{__aclocal}
-%{__autoconf}
+#%{__aclocal}
+#%{__autoconf}
 %configure \
 	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw"
 
