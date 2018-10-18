@@ -6,7 +6,7 @@ Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
 Version:	2.8
 Release:	1
-License:	BSD
+License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
@@ -17,11 +17,10 @@ Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 Source3:	https://raw.githubusercontent.com/przepompownia/tmux-bash-completion/master/completions/tmux
 # Source3-md5:	9040fcb0a16bc85309ac9eefb60c644f
 URL:		http://tmux.github.io/
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	ncurses-devel >= 5
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.673
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,8 +73,7 @@ Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 %setup -q
 
 %build
-#%{__aclocal}
-#%{__autoconf}
+# note: on Linux use plain glibc functions instead of utf8proc
 %configure \
 	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw"
 
@@ -99,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README TODO
+%doc CHANGES COPYING README TODO
 %attr(755,root,root) %{_bindir}/tmux
 %{_mandir}/man1/tmux.1*
 
