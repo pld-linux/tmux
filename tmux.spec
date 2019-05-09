@@ -4,13 +4,13 @@ Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
-Version:	2.8
+Version:	2.9a
 Release:	1
 License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	79ff2929a6422e45b490daa895cca4a2
+# Source0-md5:	f0564dbf4cf6b301c4845219d27ed3ad
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	cd1169a1757b515b5c57816d339c6f72
