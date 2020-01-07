@@ -4,18 +4,18 @@ Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
-Version:	3.0
+Version:	3.0a
 Release:	1
 License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	5e6560ff1190d6d506fd60e5217a3a69
+# Source0-md5:	ee3ccee391a25d4f2c645c94cde2c144
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	cd1169a1757b515b5c57816d339c6f72
 Source3:	https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux
-# Source3-md5:	051d597963ad0e1ed30ef610ac6ad913
+# Source3-md5:	fbb6c0b4b7c57d1b76c5a10cc4eae391
 URL:		http://tmux.github.io/
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
@@ -90,7 +90,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/{ftdetect,syntax}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/ftdetect/tmux.vim
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/syntax
 install -d $RPM_BUILD_ROOT%{bash_compdir}
-install %{SOURCE3} $RPM_BUILD_ROOT%{bash_compdir}/%{name}
+sed -e '1s,#!/usr/bin/env bash,#!/bin/bash,' %{SOURCE3} > $RPM_BUILD_ROOT%{bash_compdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
