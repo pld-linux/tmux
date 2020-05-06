@@ -16,6 +16,7 @@ Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	cd1169a1757b515b5c57816d339c6f72
 Source3:	https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux
 # Source3-md5:	6d65c0f42c74f61602a399d7bb04a85c
+Source4:	tmux@.service
 URL:		http://tmux.github.io/
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
@@ -91,6 +92,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/ftdetect/tmux.vim
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/vim/vimfiles/syntax
 install -d $RPM_BUILD_ROOT%{bash_compdir}
 sed -e '1s,#!/usr/bin/env bash,#!/bin/bash,' %{SOURCE3} > $RPM_BUILD_ROOT%{bash_compdir}/%{name}
+install -d $RPM_BUILD_ROOT%{systemdunitdir}
+install %{SOURCE4} $RPM_BUILD_ROOT%{systemdunitdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -100,6 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES COPYING README
 %attr(755,root,root) %{_bindir}/tmux
 %{_mandir}/man1/tmux.1*
+%{systemdunitdir}/tmux@.service
 
 %files -n vim-syntax-tmux
 %defattr(644,root,root,755)
