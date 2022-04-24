@@ -3,6 +3,7 @@ Description=Start tmux in detached session
 
 [Service]
 Type=forking
+TasksMax=infinity
 User=%I
 WorkingDirectory=~
 ExecStart=/usr/bin/tmux new-session -s %u -d
