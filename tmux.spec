@@ -1,5 +1,9 @@
 # TODO:
 # - vim doesn't detect filetype
+#
+# Conditional build:
+%bcond_without	systemd		# without system integration
+
 Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
@@ -23,6 +27,7 @@ BuildRequires:	libutempter-devel
 BuildRequires:	ncurses-devel >= 5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.673
+%{?with_systemd:BuildRequires:	systemd-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -76,7 +81,8 @@ Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 %build
 # note: on Linux use plain glibc functions instead of utf8proc
 %configure \
-	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw"
+	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw" \
+	%{__enable_disable systemd}
 
 %{__make}
 
