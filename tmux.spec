@@ -4,17 +4,20 @@
 # Conditional build:
 %bcond_without	systemd		# without system integration
 
+%define commit  b77778072052c14d1450d2eb89542f2493121f84
+
 Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
 Version:	3.3a
-Release:	1
+Release:	2
 License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
-Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8eee5883b9f6550fa4efaad0c9ec38f3
+# Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/tmux/tmux/archive/%{commit}.zip
+# Source0-md5:	318ec937e147046963c987970956be48
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	cd1169a1757b515b5c57816d339c6f72
@@ -76,9 +79,10 @@ This package provides bash-completion for tmux.
 Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{commit}
 
 %build
+[ ! -x configure ] && ./autogen.sh
 # note: on Linux use plain glibc functions instead of utf8proc
 %configure \
 	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw" \
