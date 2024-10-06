@@ -24,6 +24,7 @@ Source3:	https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master
 # Source3-md5:	376dc7062c0e575ff98767747cb23554
 Source4:	tmux@.service
 URL:		http://tmux.github.io/
+BuildRequires:	bison
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	ncurses-devel >= 5
