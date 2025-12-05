@@ -10,13 +10,13 @@ Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
-Version:	3.6
+Version:	3.6a
 Release:	1
 License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	1c34bbd798eeb7d04e344d9aac48d382
+# Source0-md5:	10908c36e129dbc23c833ece7fa87efb
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	cd1169a1757b515b5c57816d339c6f72
