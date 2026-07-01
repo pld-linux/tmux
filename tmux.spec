@@ -29,6 +29,7 @@ BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	ncurses-devel >= 5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.673
 %{?with_systemd:BuildRequires:	systemd-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -70,7 +71,8 @@ Summary:	Bash completion for tmux
 Summary(pl.UTF-8):	Bashowe dopełnianie poleceń dla tmuksa
 Group:		Applications/Shells
 Requires:	%{name} = %{version}-%{release}
-Requires:	bash-completion >= 2.0
+Requires:	bash-completion >= 1:2.0
+BuildArch:	noarch
 
 %description -n bash-completion-tmux
 This package provides bash-completion for tmux.
