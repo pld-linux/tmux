@@ -4,19 +4,17 @@
 # Conditional build:
 %bcond_without	systemd		# without system integration
 
-%define commit  e809c2ec359b0fd6151cf33929244b7a7d637119
-
 Summary:	tmux - a terminal multiplexer
 Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
-Version:	3.7c
+Version:	3.8
 Release:	1
 License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
 Source0:	https://github.com/tmux/tmux/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	7f3a5313bd85a3c52557f7717dc0c8dc
+# Source0-md5:	3926c9271476daff203582e66c0f547b
 Source1:	%{name}-filedetect.vim
 Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 # Source2-md5:	cd1169a1757b515b5c57816d339c6f72
@@ -88,7 +86,8 @@ Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 # note: on Linux use plain glibc functions instead of utf8proc
 %configure \
 	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncursesw" \
-	%{__enable_disable systemd}
+	%{__enable_disable systemd} \
+	--enable-sixel
 
 %{__make}
 
