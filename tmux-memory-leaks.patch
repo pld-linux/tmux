@@ -1,0 +1,90 @@
+Fix memory leaks in hooks, command dispatch, customize mode and terminal
+capability removal.
+https://github.com/tmux/tmux/commit/173e6a9e05e9e6a81d25b56a1899e3be96822d2f
+
+diff --git a/hooks.c b/hooks.c
+index acc11704..5cef0b14 100644
+--- a/hooks.c
++++ b/hooks.c
+@@ -1,4 +1,4 @@
+-/* $OpenBSD: hooks.c,v 1.16 2026/07/27 19:15:58 nicm Exp $ */
++/* $OpenBSD: hooks.c,v 1.17 2026/10/15 08:21:11 nicm Exp $ */
+ 
+ /*
+  * Copyright (c) 2026 Nicholas Marriott <nicholas.marriott@gmail.com>
+@@ -164,6 +164,7 @@ hooks_insert(struct cmdq_item *item, struct hooks_data *hd)
+ 			break;
+ 		case CMD_PARSE_SUCCESS:
+ 			hooks_insert_one(item, hd, pr->cmdlist, state);
++			cmd_list_free(pr->cmdlist);
+ 			break;
+ 		}
+ 	} else {
+@@ -178,10 +179,12 @@ hooks_insert(struct cmdq_item *item, struct hooks_data *hd)
+ 						cmdq_error(item, "%s",
+ 						    pr->error);
+ 					}
++					free(pr->error);
+ 					break;
+ 				case CMD_PARSE_SUCCESS:
+ 					item = hooks_insert_one(item, hd,
+ 					    pr->cmdlist, state);
++					cmd_list_free(pr->cmdlist);
+ 					break;
+ 				}
+ 			} else {
+diff --git a/server-client.c b/server-client.c
+index 95088099..eccd1e3e 100644
+--- a/server-client.c
++++ b/server-client.c
+@@ -2871,6 +2871,8 @@ server_client_dispatch_command(struct client *c, struct imsg *imsg)
+ 	} else {
+ 		values = args_from_vector(argc, argv);
+ 		pr = cmd_parse_from_arguments(values, argc, NULL);
++		args_free_values(values, argc);
++		free(values);
+ 		switch (pr->status) {
+ 		case CMD_PARSE_ERROR:
+ 			cause = pr->error;
+@@ -2878,8 +2880,6 @@ server_client_dispatch_command(struct client *c, struct imsg *imsg)
+ 		case CMD_PARSE_SUCCESS:
+ 			break;
+ 		}
+-		args_free_values(values, argc);
+-		free(values);
+ 		cmd_free_argv(argc, argv);
+ 		if ((c->flags & CLIENT_READONLY) &&
+ 		    !cmd_list_all_have(pr->cmdlist, CMD_READONLY)) {
+diff --git a/tty-term.c b/tty-term.c
+index 1ac078cd..a42c0713 100644
+--- a/tty-term.c
++++ b/tty-term.c
+@@ -413,6 +413,8 @@ tty_term_apply(struct tty_term *term, const char *capabilities, int quiet,
+ 				continue;
+ 
+ 			if (remove) {
++				if (code->type == TTYCODE_STRING)
++					free(code->value.string);
+ 				code->type = TTYCODE_NONE;
+ 				continue;
+ 			}
+diff --git a/window-customize.c b/window-customize.c
+index 1bf311ff..ff234ff6 100644
+--- a/window-customize.c
++++ b/window-customize.c
+@@ -1430,6 +1430,7 @@ monitor:
+ 	if (wo != NULL && options_owner(o) != wo) {
+ 		parent = options_get_only(wo, name);
+ 		if (parent != NULL) {
++			free(value);
+ 			value = options_to_string(parent, NULL, 0);
+ 			xsnprintf(label, sizeof label,
+ 			    "Window value (from window %u): ", fs.wl->idx);
+@@ -1442,6 +1443,7 @@ monitor:
+ 	if (go != NULL && options_owner(o) != go) {
+ 		parent = options_get_only(go, name);
+ 		if (parent != NULL) {
++			free(value);
+ 			value = options_to_string(parent, NULL, 0);
+ 			if (!window_customize_write_value(ctx, s->cx, sx,
+ 			    sy - (s->cy - cy), 0, "Global value: ", "%s%s%s",

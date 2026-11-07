@@ -9,7 +9,7 @@ Summary(hu.UTF-8):	tmux egy terminál-sokszorozó
 Summary(pl.UTF-8):	tmux - multiplekser terminali
 Name:		tmux
 Version:	3.8
-Release:	1
+Release:	2
 License:	ISC
 Group:		Applications/Terminal
 #Source0Download: https://github.com/tmux/tmux/releases
@@ -21,7 +21,14 @@ Source2:	https://raw.githubusercontent.com/keith/tmux.vim/master/syntax/tmux.vim
 Source3:	https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux
 # Source3-md5:	376dc7062c0e575ff98767747cb23554
 Source4:	tmux@.service
-URL:		http://tmux.github.io/
+Patch0:		%{name}-dl-il-scroll-region.patch
+Patch1:		%{name}-combine-write-path.patch
+Patch2:		%{name}-clear-padding-ich-dch-ech.patch
+Patch3:		%{name}-clear-padding-el-ed.patch
+Patch4:		%{name}-sync-scroll.patch
+Patch5:		%{name}-sync-dirty-cells.patch
+Patch6:		%{name}-memory-leaks.patch
+URL:		https://tmux.github.io/
 BuildRequires:	bison
 BuildRequires:	libevent-devel
 BuildRequires:	libutempter-devel
@@ -80,6 +87,13 @@ Ten pakiet dostarcza bashowe dopełnianie składni dla polecenia tmux.
 
 %prep
 %setup -q
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
+%patch -P4 -p1
+%patch -P5 -p1
+%patch -P6 -p1
 
 %build
 [ ! -x configure ] && ./autogen.sh
